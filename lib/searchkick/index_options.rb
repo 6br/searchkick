@@ -209,6 +209,10 @@ module Searchkick
           )
         end
 
+        if options[:merge_settings]
+          settings[:analysis][:analyzer].merge!(options[:merge_settings])
+        end
+
         if Searchkick.env == "test"
           settings[:number_of_shards] = 1
           settings[:number_of_replicas] = 0
