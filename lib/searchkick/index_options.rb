@@ -238,7 +238,7 @@ module Searchkick
 
         if synonyms.any?
           settings[:analysis][:filter][:searchkick_synonym] = {
-            type: "synonym",
+            type: "synonym_graph",
             # only remove a single space from synonyms so three-word synonyms will fail noisily instead of silently
             synonyms: synonyms.select { |s| s.size > 1 }.map { |s| s.is_a?(Array) ? s.map { |s2| s2.sub(/\s+/, "") }.join(",") : s }.map(&:downcase)
           }
